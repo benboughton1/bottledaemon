@@ -25,7 +25,7 @@ def __locked_pidfile(filename):
     lock.release()
 
 
-def daemon_run(host="localhost", port="8080", pidfile=None, logfile=None):
+def daemon_run(server='auto', host="localhost", port="8080", pidfile=None, logfile=None):
     """
     Get the bottle 'run' function running in the background as a daemonized
     process. 
@@ -62,7 +62,7 @@ def daemon_run(host="localhost", port="8080", pidfile=None, logfile=None):
         )
         
         with context:
-            bottle.run(host=host, port=port)
+            bottle.run(server=server, host=host, port=port)
     else:
         with open(pidfile,"r") as p:
             pid = int(p.read())
